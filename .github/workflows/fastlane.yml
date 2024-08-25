@@ -16,11 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Ruby environment
-        run: |
-          # Ensure correct Ruby version is installed and used
-          ruby -v
-          gem install bundler
+#      - name: Set up Ruby environment
+#        run: |
+#          # Ensure correct Ruby version is installed and used
+#          ruby -v
+#          gem install bundler
 
       - name: Install Fastlane dependencies
         run: |
