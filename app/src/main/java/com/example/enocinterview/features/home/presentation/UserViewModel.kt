@@ -86,7 +86,7 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private fun getSha256Hash(email: String): String {
+     fun getSha256Hash(email: String): String {
         val digest = MessageDigest.getInstance("SHA-256")
         val hash = digest.digest(email.trim().toLowerCase().toByteArray())
         return hash.joinToString("") { "%02x".format(it) }

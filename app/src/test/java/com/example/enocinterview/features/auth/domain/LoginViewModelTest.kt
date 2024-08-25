@@ -76,7 +76,7 @@ class LoginViewModelTest {
         advanceUntilIdle()
 
         // Then
-        verify(sessionManager).saveSession("mockUserId", "mockToken", password = "password", email = "email")
+        verify(sessionManager).saveSession("mockUserId", "mockToken", password = "password", email = "test@example.com")
     }
 
     @Test
