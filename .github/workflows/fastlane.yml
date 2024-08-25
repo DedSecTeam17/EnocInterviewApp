@@ -1,0 +1,30 @@
+name: Run Fastlane on Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Update Coverage
+    runs-on: self-hosted  # Specify that this job should run on a self-hosted runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby environment
+        run: |
+          # Ensure correct Ruby version is installed and used
+          ruby -v
+          gem install bundler
+
+      - name: Install Fastlane dependencies
+        run: |
+          bundle install --path vendor/bundle
+
+      - name: Run Fastlane to update coverage badge
+        run: bundle exec fastlane android buildDebug

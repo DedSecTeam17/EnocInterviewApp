@@ -4,6 +4,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     kotlin("kapt") // Add this line
     id("kotlin-kapt")
+    id("jacoco")
 
 }
 
@@ -24,9 +25,10 @@ android {
         }
         testInstrumentationRunner = "com.example.enocinterview.HiltTestRunner" // Replace with your actual package name
     }
-//    testOptions {
-//        unitTests.isReturnDefaultValues = true
-//    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 
     buildTypes {
         release {
@@ -35,6 +37,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+//            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
         }
     }
     compileOptions {
@@ -55,6 +61,36 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+
+jacoco {
+    toolVersion = "0.8.8" // Use the latest stable version
+}
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest") // or "test" depending on your setup
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val fileFilter = listOf("**/R.class", "**/R$*.class", "**/BuildConfig.*", "**/Manifest*.*", "**/*Test*.*", "android/**/*.*")
+
+    val debugTree = fileTree("${buildDir}/intermediates/classes/debug") {
+        exclude(fileFilter)
+    }
+
+    val kotlinDebugTree = fileTree("${buildDir}/tmp/kotlin-classes/debug") {
+        exclude(fileFilter)
+    }
+
+    val mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files(listOf(mainSrc)))
+    classDirectories.setFrom(files(listOf(debugTree, kotlinDebugTree)))
+    executionData.setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec"))
 }
 
 dependencies {

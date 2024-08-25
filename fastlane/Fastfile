@@ -1,0 +1,59 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+require 'nokogiri'
+
+default_platform(:android)
+
+
+platform :android do
+  desc "Build application to apk file"
+  lane :buildDebug do
+    gradle(
+      task: "clean assembleDebug",
+    )
+
+    # Run unit tests and generate the coverage report
+    gradle(task: "jacocoTestReport")
+
+    # Optional: Run instrumented tests and generate the coverage report
+    gradle(task: "connectedDebugAndroidTest")
+
+#     Combine unit and instrumented test coverage (if applicable)
+    gradle(task: "createDebugCoverageReport")
+
+  end
+
+  desc "Build application to aab file"
+  lane :bundleDebug do
+    gradle(
+      task: "bundleDebug",
+    )
+  end
+
+  desc "Build application release to apk file"
+  lane :buildRelease do
+    gradle(
+      task: "clean assembleRelease",
+    )
+  end
+
+  desc "Build application release to aab file"
+  lane :bundleRelease do
+    gradle(
+      task: "bundleRelease",
+    )
+  end
+
+end
