@@ -1,6 +1,4 @@
-package com.example.enocinterview
-
-import androidx.activity.viewModels
+package com.example.enocinterview.features.auth.presentation
 
 
 /**
@@ -8,11 +6,20 @@ import androidx.activity.viewModels
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-import androidx.compose.ui.test.*
+import androidx.activity.viewModels
+import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.navigation.testing.TestNavHostController
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import androidx.test.rule.GrantPermissionRule
-import com.example.enocinterview.features.auth.presentation.LoginViewModel
+import com.example.enocinterview.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
@@ -22,7 +29,7 @@ import org.junit.Test
 
 
 @HiltAndroidTest
-class LoginFlowTest {
+class TestLoginFlow {
 
     @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)

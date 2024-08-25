@@ -61,7 +61,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.enocinterview.R
@@ -71,7 +70,6 @@ import com.example.enocinterview.core.utils.UploadedImageSizeHelper
 import com.example.enocinterview.features.auth.presentation.LoginViewModel
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
-import kotlin.math.log
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -295,7 +293,7 @@ fun HomeScreen(
 //                                    show bottom sheet to select the image ===>
                                                 showBottomSheet = true
                                             }.size(100.dp) // Adjust the size as needed
-                                                .clip(CircleShape),
+                                                .clip(CircleShape).testTag("select_image_tag_local"),
                                             colorFilter = selectedFilter
                                         )
                                     } ?: gavatarImageUrl?.let {
@@ -307,7 +305,7 @@ fun HomeScreen(
 //                                    show bottom sheet to select the image ===>
                                                 showBottomSheet = true
                                             }.size(100.dp) // Adjust the size as needed
-                                                .clip(CircleShape) // Clip the image to a circle
+                                                .clip(CircleShape).testTag("select_image_tag_avatar") // Clip the image to a circle
                                         )
                                     } ?: Image(
                                         painter = painter,
@@ -317,7 +315,7 @@ fun HomeScreen(
 //                                    show bottom sheet to select the image ===>
                                             showBottomSheet = true
                                         }.size(100.dp) // Adjust the size as needed
-                                            .clip(CircleShape),
+                                            .clip(CircleShape).testTag("select_image_tag_default"),
                                         colorFilter = selectedFilter
                                     )
                                 }
@@ -332,7 +330,7 @@ fun HomeScreen(
                                 modifier = Modifier.testTag("user_name_label")
                             )
                             Text(
-                                text = user.email,
+                                text = loginViewModel.sessionManager.getEmail() ?: user.email,
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.padding(bottom = 16.dp)
                             )
@@ -359,7 +357,8 @@ fun HomeScreen(
     if (showBottomSheet) {
         ModalBottomSheet(
             onDismissRequest = { showBottomSheet = false },
-            sheetState = rememberModalBottomSheetState()
+            sheetState = rememberModalBottomSheetState(),
+            modifier = Modifier.testTag("select_image_bottom_sheet")
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
@@ -374,7 +373,7 @@ fun HomeScreen(
                     } else {
                         storagePermissionLauncher.launch(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))
                     }
-                }) {
+                }, modifier = Modifier.testTag("select_from_gallery")) {
                     Text("Choose from Gallery")
                 }
                 Spacer(modifier = Modifier.height(8.dp))
@@ -385,7 +384,7 @@ fun HomeScreen(
                     } else {
                         cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
                     }
-                }) {
+                }, modifier = Modifier.testTag("select_from_camera")) {
                     Text("Take Photo")
                 }
             }

@@ -5,14 +5,12 @@ import com.example.enocinterview.features.auth.data.api.AuthApiService
 import com.example.enocinterview.features.auth.data.api.MockAuthApiService
 import com.example.enocinterview.features.auth.domain.repository.AuthRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.mock.BehaviorDelegate

@@ -122,7 +122,11 @@ dependencies {
     // UI Testing for Compose
     androidTestImplementation(libs.androidx.compose.ui.ui.test.junit42)
 
+
     debugImplementation(libs.androidx.compose.ui.ui.test.manifest2)
+
+
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.6.1") // Required for Intents
 
 
 

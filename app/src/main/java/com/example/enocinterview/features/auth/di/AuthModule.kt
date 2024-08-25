@@ -9,12 +9,10 @@ import com.example.enocinterview.features.auth.data.repository.AuthRepositoryImp
 import com.example.enocinterview.features.auth.domain.repository.AuthRepository
 import com.example.enocinterview.features.auth.domain.usecases.LoginUseCase
 import dagger.Module
-import dagger.*
-import dagger.hilt.*
+import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-
-
 
 
 @Module

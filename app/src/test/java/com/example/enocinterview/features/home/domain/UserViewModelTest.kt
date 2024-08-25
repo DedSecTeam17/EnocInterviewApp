@@ -2,9 +2,7 @@ package com.example.enocinterview.features.home.domain
 
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.enocinterview.core.utils.Resource
-import com.example.enocinterview.features.auth.data.model.LoginResponse
 import com.example.enocinterview.features.home.data.model.AvatarUpdateResponse
 import com.example.enocinterview.features.home.data.model.GravatarProfile
 import com.example.enocinterview.features.home.data.model.UserResponse
@@ -13,20 +11,24 @@ import com.example.enocinterview.features.home.domain.usecases.GetUserUseCase
 import com.example.enocinterview.features.home.domain.usecases.UpdateAvatarUseCase
 import com.example.enocinterview.features.home.presentation.UserViewModel
 import kotlinx.coroutines.Dispatchers
-
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.*
-import org.junit.*
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.runner.RunWith
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 class UserViewModelTest {

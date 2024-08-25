@@ -4,10 +4,7 @@ package com.example.enocinterview.features.home.data.repository
 import com.example.enocinterview.core.utils.Resource
 import com.example.enocinterview.features.home.data.api.GravatarApiService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before

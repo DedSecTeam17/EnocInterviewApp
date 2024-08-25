@@ -1,9 +1,6 @@
 package com.example.enocinterview.features.home.presentation
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.net.Uri
-import android.util.Base64
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.enocinterview.core.utils.Resource
@@ -16,13 +13,9 @@ import com.example.enocinterview.features.home.domain.usecases.UpdateAvatarUseCa
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
 import java.security.MessageDigest
+import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(

@@ -1,11 +1,10 @@
 package com.example.enocinterview.core.utils
 
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.mock.BehaviorDelegate
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
-import okhttp3.OkHttpClient
 
 fun createMockRetrofit(): MockRetrofit {
     val retrofit = Retrofit.Builder()

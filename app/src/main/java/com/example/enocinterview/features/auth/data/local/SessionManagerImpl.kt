@@ -2,7 +2,6 @@ package com.example.enocinterview.features.auth.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.ContactsContract.CommonDataKinds.Email
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

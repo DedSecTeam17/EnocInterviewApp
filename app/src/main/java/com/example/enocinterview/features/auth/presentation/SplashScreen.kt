@@ -13,14 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.enocinterview.core.utils.Resource
 import com.example.enocinterview.features.auth.data.local.SessionManager
-import com.example.enocinterview.features.auth.domain.usecases.LoginUseCase
 import kotlinx.coroutines.delay
 
 
@@ -38,7 +36,7 @@ fun SplashScreen(
         val token = sessionManager.getToken()
         val firstTime: Boolean = sessionManager.isFirstTime()
         if (firstTime) {
-            viewModel.login("anonymousUser", "password")
+            viewModel.login("mohammedelamin23.me@gmail.com", "password")
         } else {
             if (token.isNullOrEmpty()) {
                 navController.navigate("login") {

@@ -3,13 +3,13 @@ package com.example.enocinterview.core.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.provider.OpenableColumns
 import android.util.Base64
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
-import android.database.Cursor
-import android.provider.OpenableColumns
+
 @Composable
 fun GetScreenWidth(): Int {
     val configuration = LocalConfiguration.current
